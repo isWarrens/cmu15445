@@ -21,7 +21,7 @@ namespace bustub {
 
 // NOLINTNEXTLINE
 // Check whether pages containing terminal characters can be recovered
-TEST(ParallelBufferPoolManagerTest, DISABLED_BinaryDataTest) {
+TEST(ParallelBufferPoolManagerTest, BinaryDataTest) {
   const std::string db_name = "test.db";
   const size_t buffer_pool_size = 10;
   const size_t num_instances = 5;
@@ -88,7 +88,7 @@ TEST(ParallelBufferPoolManagerTest, DISABLED_BinaryDataTest) {
 }
 
 // NOLINTNEXTLINE
-TEST(ParallelBufferPoolManagerTest, DISABLED_SampleTest) {
+TEST(ParallelBufferPoolManagerTest, SampleTest) {
   const std::string db_name = "test.db";
   const size_t buffer_pool_size = 10;
   const size_t num_instances = 5;
@@ -126,7 +126,7 @@ TEST(ParallelBufferPoolManagerTest, DISABLED_SampleTest) {
   // Scenario: After unpinning pages {0, 1, 2, 3, 4} and pinning pages {0, 1, 2, 3},
   // there would still be one buffer page left for reading page 4.
 
-  for (int i = 0; i < 5; ++i) {
+  for (int i = 0; i < 4; ++i) {
     EXPECT_EQ(true, bpm->UnpinPage(i, true));
   }
   for (int i = 0; i < 4; ++i) {

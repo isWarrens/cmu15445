@@ -40,6 +40,9 @@ class HashTableBucketPage {
   // Delete all constructor / destructor to ensure memory safety
   HashTableBucketPage() = delete;
 
+  uint32_t GetFirstNoRead();
+
+
   /**
    * Scan the bucket and collect values that have the matching key
    *
@@ -117,6 +120,8 @@ class HashTableBucketPage {
    */
   void SetReadable(uint32_t bucket_idx);
 
+  void SetNoReadable(uint32_t bucket_idx);
+
   /**
    * @return the number of readable elements, i.e. current size
    */
@@ -142,6 +147,7 @@ class HashTableBucketPage {
   char occupied_[(BUCKET_ARRAY_SIZE - 1) / 8 + 1];
   // 0 if tombstone/brand new (never occupied), 1 otherwise.
   char readable_[(BUCKET_ARRAY_SIZE - 1) / 8 + 1];
+  // 每个bucket会分配4k内存，初始化为1，是因为mappingtype大小不一样所以数组大小不好分配
   MappingType array_[1];
 };
 

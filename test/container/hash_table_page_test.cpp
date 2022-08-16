@@ -23,7 +23,7 @@
 namespace bustub {
 
 // NOLINTNEXTLINE
-TEST(HashTablePageTest, DISABLED_DirectoryPageSampleTest) {
+TEST(HashTablePageTest, DirectoryPageSampleTest) {
   DiskManager *disk_manager = new DiskManager("test.db");
   auto *bpm = new BufferPoolManagerInstance(5, disk_manager);
 
@@ -57,7 +57,7 @@ TEST(HashTablePageTest, DISABLED_DirectoryPageSampleTest) {
 }
 
 // NOLINTNEXTLINE
-TEST(HashTablePageTest, DISABLED_BucketPageSampleTest) {
+TEST(HashTablePageTest, BucketPageSampleTest) {
   DiskManager *disk_manager = new DiskManager("test.db");
   auto *bpm = new BufferPoolManagerInstance(5, disk_manager);
 
@@ -84,6 +84,7 @@ TEST(HashTablePageTest, DISABLED_BucketPageSampleTest) {
       assert(bucket_page->Remove(i, i, IntComparator()));
     }
   }
+  LOG_INFO("%d",__LINE__);
 
   // check for the flags
   for (unsigned i = 0; i < 15; i++) {
@@ -105,6 +106,8 @@ TEST(HashTablePageTest, DISABLED_BucketPageSampleTest) {
       assert(!bucket_page->Remove(i, i, IntComparator()));
     }
   }
+
+  bucket_page->PrintBucket();
 
   // unpin the directory page now that we are done
   bpm->UnpinPage(bucket_page_id, true, nullptr);
