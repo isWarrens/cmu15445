@@ -115,7 +115,15 @@ auto HASH_TABLE_TYPE::Remove(Transaction *transaction, const KeyType &key, const
  *****************************************************************************/
 template <typename KeyType, typename ValueType, typename KeyComparator>
 void HASH_TABLE_TYPE::Merge(Transaction *transaction, const KeyType &key, const ValueType &value) {
- 
+  /*auto global_depth = GetGlobalDepth();
+  auto directory_page = FetchDirectoryPage();
+  auto bucket_idx = KeyToDirectoryIndex(key, directory_page);
+  if(directory_page->GetLocalDepth(bucket_idx) == 0) {
+    buffer_pool_manager_->UnpinPage(directory_page_id_, false, nullptr);
+    return ;
+  }
+  auto bucket_page_id = directory_page->GetBucketPageId(bucket_idx);
+  auto split_image_id = directory_page->GetSplitImageIndex(bucket_idx);*/
 }
 
 /*****************************************************************************
